@@ -1,0 +1,183 @@
+<!doctype html>
+<html>
+  <head>
+    <title>SSE Request Monitor</title>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background: #f5f5f5;
+      }
+      h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .request-item {
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .request-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+      .method {
+        background: #007bff;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: bold;
+      }
+      .url {
+        color: #666;
+        font-family: monospace;
+      }
+      .timestamp {
+        color: #999;
+        font-size: 12px;
+      }
+      .headers {
+        background: #f8f9fa;
+        padding: 10px;
+        border-radius: 4px;
+        font-family: monospace;
+        font-size: 12px;
+        color: #555;
+      }
+      .counter {
+        text-align: center;
+        color: #666;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>SSE Request Monitor</h1>
+    <div class="counter">Requests: <span id="count">0</span>/5</div>
+    <div id="messages"></div>
+    <script type="module">
+      import sseClient from 'https://cdn.jsdelivr.net/npm/@neabyte/sse-client/+esm'
+
+      let requestCount = 0
+      const maxRequests = 5
+
+      // Configuration for the SSE client
+      const config = {
+        retryInterval: 3000, // Retry every 3 seconds
+        retryAttempts: 5, // Try up to 5 times
+        autoReconnect: true, // Enable auto-reconnection
+        timeout: 30000 // 30 second connection timeout
+      }
+
+      // Create SSE client with message callback
+      const client = sseClient(
+        '/sse',
+        message => {
+          console.log('SSE Response:', message)
+
+          // Handle http-request events
+          if (message.event === 'http-request') {
+            const data = JSON.parse(message.data)
+            const div = document.createElement('div')
+            div.className = 'request-item'
+            const now = new Date()
+            const timestamp = now.toLocaleTimeString()
+
+            div.innerHTML = `
+            <div class="request-header">
+              <div>
+                <span class="method">${data.method}</span>
+                <span class="url">${data.url}</span>
+              </div>
+              <span class="timestamp">${timestamp}</span>
+            </div>
+            <div class="headers">
+              <strong>Headers:</strong><br>
+              ${Object.entries(data.headers)
+                .map(([key, value]) => `${key}: ${value}`)
+                .join('<br>')}
+            </div>
+            ${data.body ? `<div class="headers"><strong>Body:</strong><br>${data.body}</div>` : ''}
+          `
+
+            // Add new message to the TOP (latest first)
+            const messagesContainer = document.getElementById('messages')
+            messagesContainer.insertBefore(div, messagesContainer.firstChild)
+
+            // Keep only the latest 5 messages
+            const allMessages = messagesContainer.querySelectorAll('.request-item')
+            if (allMessages.length > maxRequests) {
+              // Remove oldest messages (from bottom)
+              for (let i = maxRequests; i < allMessages.length; i++) {
+                allMessages[i].remove()
+              }
+            }
+
+            // Update counter
+            requestCount = Math.min(requestCount + 1, maxRequests)
+            document.getElementById('count').textContent = requestCount
+          }
+
+          // Handle connection messages
+          if (message.event === 'message' || !message.event) {
+            console.log('Connection message:', message.data)
+          }
+        },
+        config
+      )
+
+      // Listen for connection status changes
+      client.on('callback', status => {
+        console.log('SSE Connection Status:', status)
+
+        // Update UI based on connection status
+        const statusElement =
+          document.getElementById('status') ||
+          (() => {
+            const statusDiv = document.createElement('div')
+            statusDiv.id = 'status'
+            statusDiv.style.cssText =
+              'text-align: center; margin-bottom: 20px; padding: 10px; border-radius: 4px;'
+            document
+              .querySelector('.counter')
+              .parentNode.insertBefore(statusDiv, document.querySelector('.counter'))
+            return statusDiv
+          })()
+
+        statusElement.textContent = `Connection status: ${status.name}`
+
+        switch (status.name) {
+          case 'connecting':
+            statusElement.style.backgroundColor = '#fff3cd'
+            statusElement.style.color = '#856404'
+            break
+          case 'connected':
+            statusElement.style.backgroundColor = '#d4edda'
+            statusElement.style.color = '#155724'
+            break
+          case 'disconnected':
+            statusElement.style.backgroundColor = '#f8d7da'
+            statusElement.style.color = '#721c24'
+            break
+          case 'reconnecting':
+            statusElement.style.backgroundColor = '#d1ecf1'
+            statusElement.style.color = '#0c5460'
+            break
+          case 'error':
+            statusElement.style.backgroundColor = '#f8d7da'
+            statusElement.style.color = '#721c24'
+            break
+        }
+      })
+    </script>
+  </body>
+</html>
